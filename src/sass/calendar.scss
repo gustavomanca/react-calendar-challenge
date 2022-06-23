@@ -5,8 +5,8 @@
 
   &-header {
     display: grid;
-    grid-template-columns: repeat(7, auto);
-
+    grid-template-columns: repeat(7, 1fr);
+    
     background-color: $buttonBgLight;
     color: $buttonTextColor;
 
@@ -17,6 +17,28 @@
       
       margin: 0;
       padding: .5rem 1rem
+    }
+  }
+  
+  &-weeks {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &-day {
+    height: 6rem;
+
+    border: 1px solid gray;
+    font-weight: bold;
+
+    
+    &.--weekend {
+      background-color: $buttonTextColor;
+      color: $buttonBgLight;
+    }
+
+    &.--disabled {
+      color: lightgray;
     }
   }
 }
