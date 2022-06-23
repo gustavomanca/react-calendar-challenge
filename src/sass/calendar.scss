@@ -1,0 +1,22 @@
+.calendar {
+
+  $buttonBgLight: #325f8f;
+  $buttonTextColor: #e5ebf1;
+
+  &-header {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+
+    background-color: $buttonBgLight;
+    color: $buttonTextColor;
+
+    > .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      margin: 0;
+      padding: .5rem 1rem
+    }
+  }
+}
