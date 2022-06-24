@@ -42,3 +42,12 @@
     }
   }
 }
+
+.fields-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  >*:not(:last-child) {
+    margin: 0 0 12px;
+  }
+}
