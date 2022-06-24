@@ -1,4 +1,6 @@
-.input {
+import styled from "styled-components";
+
+export const Container = styled.input`
   height: 48px;
   margin: 0;
   padding: 0 12px;
@@ -8,4 +10,4 @@
   &:focus-visible {
     outline: 1px solid gray;
   }
-}
+`;

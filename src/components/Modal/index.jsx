@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 
+import * as S from "./styles";
 function Modal({ children, onClose, title }) {
   return (
-    <div className="modal">
-      <button className="close-modal" onClick={onClose} />
-      {title && <h3 className="modal-title">{title}</h3>}
+    <S.Container>
+      <S.Close onClick={onClose} />
+      {title && <S.Title>{title}</S.Title>}
       {children}
-    </div>
+    </S.Container>
   );
 }
 

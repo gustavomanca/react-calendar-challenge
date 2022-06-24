@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 
+import * as S from "./styles";
+
 function TextField(props) {
-  return <input className="input" {...props} />;
+  return <S.Container {...props} />;
 }
 
 TextField.defaultProps = {
