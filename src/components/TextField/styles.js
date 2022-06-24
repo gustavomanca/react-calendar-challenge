@@ -1,13 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.input`
-  height: 48px;
-  margin: 0;
-  padding: 0 12px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
+  ${({ theme }) => css`
+    height: ${theme.spacings.xlarge};
+    margin: 0;
+    padding: 0 ${theme.spacings.xxsmall};
+    border: 1px solid ${theme.colors.lightGray};
+    border-radius: 0.4rem;
 
-  &:focus-visible {
-    outline: 1px solid gray;
-  }
+    &:focus-visible {
+      outline: 1px solid gray;
+    }
+  `}
 `;

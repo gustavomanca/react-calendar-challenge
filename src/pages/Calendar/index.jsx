@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Modal, TextField } from "components";
 import { getMappedMonth } from "utils/date";
 
+import * as S from "./styles";
+
 function Calendar() {
   const [showModal, setShowModal] = useState(true);
   const [reminder, setReminder] = useState({
@@ -58,34 +60,27 @@ function Calendar() {
 
       <h1>Calendar</h1>
 
-      <div className="calendar">
-        <header className="calendar-header">
-          <span className="item">Sunday</span>
-          <span className="item">Monday</span>
-          <span className="item">Tuesday</span>
-          <span className="item">Wednesday</span>
-          <span className="item">Thursday</span>
-          <span className="item">Friday</span>
-          <span className="item">Saturday</span>
-        </header>
+      <S.Container>
+        <S.Header>
+          <span className="day-of-week">Sunday</span>
+          <span className="day-of-week">Monday</span>
+          <span className="day-of-week">Tuesday</span>
+          <span className="day-of-week">Wednesday</span>
+          <span className="day-of-week">Thursday</span>
+          <span className="day-of-week">Friday</span>
+          <span className="day-of-week">Saturday</span>
+        </S.Header>
 
-        <div className="calendar-weeks">
+        <S.DateGrid>
           {month?.map((row) =>
             row.map(({ day, isCurrentMonth, isWeekend }) => (
-              <span
-                className={[
-                  "calendar-day",
-                  isWeekend ? "--weekend" : "",
-                  !isCurrentMonth ? "--disabled" : "",
-                ].join(" ")}
-                key={day}
-              >
+              <S.Day key={day} isWeekend={isWeekend} disabled={!isCurrentMonth}>
                 {day}
-              </span>
+              </S.Day>
             ))
           )}
-        </div>
-      </div>
+        </S.DateGrid>
+      </S.Container>
     </div>
   );
 }
