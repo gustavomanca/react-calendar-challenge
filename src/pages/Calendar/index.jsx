@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import Modal from "components/Modal";
-import TextField from "components/TextField";
+import { Modal, TextField } from "components";
 import { getMappedMonth } from "utils/date";
 
 function Calendar() {
