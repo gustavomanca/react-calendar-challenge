@@ -4,7 +4,7 @@ const theme = {
     gutter: "3.2rem",
   },
   border: {
-    radius: "0.4rem",
+    radius: "1.2rem",
   },
   font: {
     family:

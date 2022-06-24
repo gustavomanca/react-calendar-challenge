@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Button, Modal, TextField } from "components";
 import PropTypes from "prop-types";
 
+import * as S from "./styles";
+
 function ReminderModal({ setShowModal }) {
   const [reminder, setReminder] = useState({
     title: "",
@@ -12,7 +14,7 @@ function ReminderModal({ setShowModal }) {
 
   return (
     <Modal title="New reminder" onClose={() => setShowModal(false)}>
-      <div className="fields-wrapper">
+      <S.FieldsWrapper>
         <TextField
           value={reminder.title}
           placeholder="Type a title..."
@@ -47,7 +49,9 @@ function ReminderModal({ setShowModal }) {
             }));
           }}
         />
-      </div>
+      </S.FieldsWrapper>
+
+      <Button onClick={() => {}}>Add</Button>
     </Modal>
   );
 }

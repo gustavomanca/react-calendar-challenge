@@ -7,7 +7,7 @@ export const Container = styled.div`
     left: 50%;
     z-index: 2;
 
-    border-radius: 1.2rem;
+    border-radius: ${theme.border.radius};
     height: 400px;
     padding: ${theme.spacings.medium} ${theme.spacings.small};
     width: 50vw;
@@ -26,7 +26,7 @@ export const Close = styled.button`
     top: 0;
 
     border: none;
-    border-radius: 0 ${theme.spacings.xxsmall} 0 ${theme.spacings.xxsmall};
+    border-radius: 0 ${theme.border.radius} 0 ${theme.border.radius};
     height: ${theme.spacings.xlarge};
     padding: 0;
     width: ${theme.spacings.xlarge};
@@ -65,4 +65,8 @@ export const Close = styled.button`
   `}
 `;
 
-export const Title = styled.h3``;
+export const Title = styled.h3`
+  ${({ theme }) => css`
+    margin: 0 0 ${theme.spacings.small};
+  `}
+`;

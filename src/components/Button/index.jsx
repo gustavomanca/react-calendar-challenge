@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
 
+import * as S from "./styles";
 function Button(props) {
   const { onClick, children } = props;
 
-  return <button onClick={onClick}>{children}</button>;
+  return (
+    <S.Container onClick={onClick} {...props}>
+      {children}
+    </S.Container>
+  );
 }
 
 Button.propTypes = {

@@ -1,12 +1,14 @@
 import { useState } from "react";
 
+import { Button } from "components";
+
 import DateGrid from "./components/DateGrid";
 import Header from "./components/Header";
 import ReminderModal from "./components/ReminderModal";
 import * as S from "./styles";
 
 function Calendar() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="container">
@@ -18,6 +20,8 @@ function Calendar() {
         <Header />
         <DateGrid />
       </S.Container>
+
+      <Button onClick={() => setShowModal(true)}>New Reminder</Button>
     </div>
   );
 }
