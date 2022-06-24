@@ -11,7 +11,10 @@ function Modal({ children, onClose, title }) {
 }
 
 Modal.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   onClose: PropTypes.func,
   title: PropTypes.string,
 };
