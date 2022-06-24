@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Modal from "../components/Modal";
-import TextField from "../components/TextField";
-import { getMappedMonth } from "../utils/date";
+import Modal from "components/Modal";
+import TextField from "components/TextField";
+import { getMappedMonth } from "utils/date";
 
 function Calendar() {
   const [showModal, setShowModal] = useState(true);
