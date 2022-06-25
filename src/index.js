@@ -1,15 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider as ReduxProvider } from "react-redux";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "styles/global";
 import theme from "styles/theme";
 
 import Main from "./Main";
-import reducers from "./reducers";
 import reportWebVitals from "./reportWebVitals";
-import getStore from "./store/getStore";
 
 // import main sass file
 import "./sass/app.scss";
@@ -17,10 +14,8 @@ import "./sass/app.scss";
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <ReduxProvider store={getStore(reducers)}>
-        <GlobalStyles />
-        <Main />
-      </ReduxProvider>
+      <GlobalStyles />
+      <Main />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
