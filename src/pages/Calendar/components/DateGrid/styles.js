@@ -15,12 +15,15 @@ export const Container = styled.div`
   grid-template-columns: repeat(7, 1fr);
 `;
 
-export const Day = styled.span`
+export const Day = styled.div`
   ${({ theme, disabled, isWeekend }) => css`
     height: 9.6rem;
 
     border: 1px solid gray;
     font-weight: ${theme.font.bold};
+    padding: 0.4rem;
+
+    overflow: hidden;
 
     ${isWeekend && kinds.weekend(theme)};
     ${disabled && kinds.disabled(theme)};
@@ -33,5 +36,16 @@ export const DayNumber = styled.span`
 `;
 
 export const Reminder = styled.p`
-  word-break: break-all;
+  ${({ theme }) => css`
+    border-radius: 0.4rem;
+    padding: 0 2px;
+    width: 100%;
+
+    background-color: ${theme.colors.label};
+
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `};
 `;

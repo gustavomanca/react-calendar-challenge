@@ -15,13 +15,12 @@ function DateGrid({ month, reminders }) {
       {month?.map((row) =>
         row.map(({ day, isCurrentMonth, isWeekend }) => {
           const hasReminder = verifyIfHasReminder(day);
-
+          const renderReminder = isCurrentMonth && hasReminder;
           return (
             <S.Day key={day} isWeekend={isWeekend} disabled={!isCurrentMonth}>
               <S.DayNumber>{day}</S.DayNumber>
 
-              {isCurrentMonth &&
-                hasReminder &&
+              {renderReminder &&
                 hasReminder.map((each) => (
                   <S.Reminder key={each.title}>{each.title}</S.Reminder>
                 ))}

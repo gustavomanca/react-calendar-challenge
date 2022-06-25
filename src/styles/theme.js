@@ -23,6 +23,7 @@ const theme = {
   },
   colors: {
     primary: "#003268",
+    label: "#f5f5dc",
     lightBlue: "#325f8f",
     lightGray: "#e5ebf1",
     white: "#FAFAFA",
