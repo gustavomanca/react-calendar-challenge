@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { Button, Modal, TextField } from "components";
+import { Button, Dropdown, Modal, TextField } from "components";
 import PropTypes from "prop-types";
 
+import { TIME_OPTIONS } from "./content";
 import * as S from "./styles";
 
 function ReminderModal({
@@ -63,6 +63,14 @@ function ReminderModal({
               }));
             }}
           />
+          <Dropdown
+            onChange={({ key }) =>
+              setReminder((prev) => ({ ...prev, time: key }))
+            }
+            options={TIME_OPTIONS}
+            placeholder="Pick a time..."
+          />
+
           <TextField
             value={reminder.city}
             placeholder="Type a city..."
