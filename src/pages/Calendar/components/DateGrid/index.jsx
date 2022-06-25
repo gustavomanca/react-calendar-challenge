@@ -48,6 +48,7 @@ DateGrid.propTypes = {
       title: "",
       day: "",
       city: "",
+      time: "",
     })
   ),
 };
