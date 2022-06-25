@@ -8,7 +8,6 @@ export const Container = styled.div`
     z-index: 2;
 
     border-radius: ${theme.border.radius};
-    height: 400px;
     padding: ${theme.spacings.medium} ${theme.spacings.small};
     width: 50vw;
 
