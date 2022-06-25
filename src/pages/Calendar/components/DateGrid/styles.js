@@ -26,3 +26,12 @@ export const Day = styled.span`
     ${disabled && kinds.disabled(theme)};
   `}
 `;
+
+export const DayNumber = styled.span`
+  display: block;
+  margin: 0 0 0.8rem;
+`;
+
+export const Reminder = styled.p`
+  word-break: break-all;
+`;
