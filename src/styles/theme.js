@@ -29,6 +29,7 @@ const theme = {
     white: "#FAFAFA",
     black: "#222",
     lightest: "#FFF",
+    danger: "#b40606",
   },
   spacings: {
     smallest: "0.8rem",

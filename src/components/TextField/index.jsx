@@ -2,8 +2,12 @@ import PropTypes from "prop-types";
 
 import * as S from "./styles";
 
-function TextField(props) {
-  return <S.Container {...props} />;
+function TextField({ error, ...props }) {
+  return (
+    <S.Container>
+      <S.Input error={error} {...props} /> {error && <S.Error>{error}</S.Error>}
+    </S.Container>
+  );
 }
 
 TextField.defaultProps = {
@@ -11,6 +15,7 @@ TextField.defaultProps = {
 };
 
 TextField.propTypes = {
+  error: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
