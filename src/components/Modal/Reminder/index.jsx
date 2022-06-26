@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Button, Dropdown, Modal, TextField } from "components";
 import PropTypes from "prop-types";
+import { add, edit, toggleModal } from "reducers/reminder";
+import { generateUUID } from "utils/uuid";
 
 import { TIME_OPTIONS } from "./content";
 import * as S from "./styles";
 
-function ReminderModal({
-  amountOfDays,
-  onSaveReminder,
-  setShowModal,
-  toEditReminder,
-}) {
-  const [reminder, setReminder] = useState({
-    title: "",
-    day: "",
-    city: "",
-    time: "",
-  });
+const INITIAL_REMINDER_STATE = {
+  id: "",
+  title: "",
+  day: "",
+  city: "",
+  time: "",
+};
+
+function ReminderModal({ amountOfDays }) {
+  const dispatch = useDispatch();
+  const { current, showModal } = useSelector(({ reminders }) => reminders);
+
+  const [reminder, setReminder] = useState(INITIAL_REMINDER_STATE);
 
   function handleDay(value) {
     const day = value.match(/\d+/g)?.join("");
@@ -25,19 +29,32 @@ function ReminderModal({
     else return "";
   }
 
+  function clear() {
+    setReminder(INITIAL_REMINDER_STATE);
+    dispatch(toggleModal(false));
+  }
+
   function onSubmit(event) {
     event.preventDefault();
-    setShowModal(false);
-    onSaveReminder(reminder);
+    toggleModal(false);
+    if (current) {
+      dispatch(edit(reminder));
+      return clear();
+    }
+    const id = generateUUID();
+    dispatch(add({ ...reminder, id }));
+    clear();
   }
 
   useEffect(() => {
-    if (!toEditReminder) return;
-    setReminder((prev) => ({ ...prev, ...toEditReminder }));
-  }, [toEditReminder]);
+    if (!current) return;
+    setReminder((prev) => ({ ...prev, ...current }));
+  }, [current]);
+
+  if (!showModal) return <></>;
 
   return (
-    <Modal title="New reminder" onClose={() => setShowModal(false)}>
+    <Modal title="New reminder" onClose={() => dispatch(toggleModal(false))}>
       <form onSubmit={onSubmit}>
         <S.FieldsWrapper>
           <TextField
@@ -91,13 +108,6 @@ function ReminderModal({
 
 ReminderModal.propTypes = {
   amountOfDays: PropTypes.arrayOf(PropTypes.number),
-  onSaveReminder: PropTypes.func,
-  setShowModal: PropTypes.func.isRequired,
-  toEditReminder: PropTypes.shape({
-    title: "",
-    day: "",
-    city: "",
-  }),
 };
 
 export default ReminderModal;
