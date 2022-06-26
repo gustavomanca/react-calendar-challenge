@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "styles/global";
@@ -7,16 +8,19 @@ import theme from "styles/theme";
 
 import Main from "./Main";
 import reportWebVitals from "./reportWebVitals";
+import { store } from "./store";
 
 // import main sass file
 import "./sass/app.scss";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Main />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Main />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
