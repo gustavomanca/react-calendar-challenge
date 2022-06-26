@@ -18,13 +18,12 @@ export const reminderSlice = createSlice({
         ({ id }) => id === action.payload.id
       );
       state.data.splice(foundIndex, 1, action.payload);
-      state.current = null;
     },
     setCurrent: (state, action) => {
       state.current = action.payload;
     },
     toggleModal: (state, action) => {
-      state.showModal = action.payload || !state.showModal;
+      state.showModal = action.payload;
     },
   },
 });

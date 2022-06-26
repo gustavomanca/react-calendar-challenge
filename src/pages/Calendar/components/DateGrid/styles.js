@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 export const Day = styled.div`
   ${({ theme, disabled, isWeekend }) => css`
-    height: 9.6rem;
+    height: 13rem;
 
     border: 1px solid gray;
     font-weight: ${theme.font.bold};
@@ -38,6 +38,7 @@ export const DayNumber = styled.span`
 export const Reminder = styled.p`
   ${({ theme }) => css`
     border-radius: 0.4rem;
+    margin: 0 0 0.4rem;
     padding: 0 2px;
     width: 100%;
 
@@ -47,5 +48,12 @@ export const Reminder = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    transition: transform 0.3s ease;
+    will-change: transform;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   `};
 `;
