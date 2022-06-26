@@ -8,7 +8,7 @@ export const FieldsWrapper = styled.div`
     margin: 0 0 ${theme.spacings.large};
 
     > *:not(:last-child) {
-      margin: 0 0 ${theme.spacings.small};
+      margin: 0 0 ${theme.spacings.medium};
     }
   `}
 `;
