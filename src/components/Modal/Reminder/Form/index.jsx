@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import cogoToast from "cogo-toast";
 import { Button, Dropdown, TextField } from "components";
 import { add, destroy, edit, setCurrent, toggleModal } from "reducers/reminder";
 import { getCityKey } from "services/city";
@@ -66,13 +67,14 @@ function Form({ amountOfDays, reminder, setReminder }) {
         ...weatherInfo,
       }));
     } catch (error) {
-      console.log({ error });
+      cogoToast.error(error.response.data);
     }
   }
 
   function onDeleteReminder(id) {
     dispatch(destroy(reminder.id));
     clear();
+    cogoToast.success("Reminder has been deleted!");
   }
 
   function onSubmit(event) {
@@ -88,10 +90,12 @@ function Form({ amountOfDays, reminder, setReminder }) {
     toggleModal(false);
     if (current) {
       dispatch(edit(reminder));
+      cogoToast.success("Reminder has been successfully edited!");
       return clear();
     }
     const id = generateUUID();
     dispatch(add({ ...reminder, id }));
+    cogoToast.success("Reminder has been created!");
     clear();
   }
 

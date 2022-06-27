@@ -10,6 +10,8 @@ import DateGrid from "./components/DateGrid";
 import Header from "./components/Header";
 import * as S from "./styles";
 
+import "react-toastify/dist/ReactToastify.min.css";
+
 function Calendar() {
   const dispatch = useDispatch();
   const currentReminder = useSelector(({ reminders }) => reminders.current);
