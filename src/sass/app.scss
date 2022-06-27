@@ -11,6 +11,10 @@ body {
   > div {
     margin-top: 0;
   }
+
+  iframe {
+    display: none;
+  }
 }
 
 code {
@@ -96,4 +100,6 @@ li {
       transform: scale(1.1);
     }
   }
+
+ 
 }
