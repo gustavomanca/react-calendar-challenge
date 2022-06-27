@@ -1,3 +1,4 @@
+import { Button } from "components";
 import styled, { css } from "styled-components";
 
 export const FieldsWrapper = styled.div`
@@ -42,5 +43,16 @@ export const Temperature = styled.span`
     display: block;
     font-size: ${theme.font.sizes.xxlarge};
     margin: 0 ${theme.spacings.xsmall} 0 0;
+  `}
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Delete = styled(Button)`
+  ${({ theme }) => css`
+    background-color: ${theme.colors.danger};
   `}
 `;

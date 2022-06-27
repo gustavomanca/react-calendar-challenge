@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button, Dropdown, TextField } from "components";
-import { add, edit, setCurrent, toggleModal } from "reducers/reminder";
+import { add, destroy, edit, setCurrent, toggleModal } from "reducers/reminder";
 import { getCityKey } from "services/city";
 import { getCurrentConditions } from "services/weather";
 import { generateUUID } from "utils/uuid";
@@ -68,6 +68,11 @@ function Form({ amountOfDays, reminder, setReminder }) {
     } catch (error) {
       console.log({ error });
     }
+  }
+
+  function onDeleteReminder(id) {
+    dispatch(destroy(reminder.id));
+    clear();
   }
 
   function onSubmit(event) {
@@ -157,7 +162,14 @@ function Form({ amountOfDays, reminder, setReminder }) {
         </S.CityWrapper>
       </S.FieldsWrapper>
 
-      <Button type="submit">Save</Button>
+      <S.Actions>
+        <Button type="submit">Save</Button>
+        {reminder.id && (
+          <S.Delete onClick={() => onDeleteReminder(reminder.id)}>
+            Delete
+          </S.Delete>
+        )}
+      </S.Actions>
     </form>
   );
 }

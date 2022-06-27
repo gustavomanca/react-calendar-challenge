@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.button`
   ${({ theme }) => css`
     height: ${theme.spacings.xlarge};
+    width: 14.4rem;
 
     border: none;
     border-radius: 0.4rem;

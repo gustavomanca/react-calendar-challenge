@@ -13,6 +13,12 @@ export const reminderSlice = createSlice({
     add: (state, action) => {
       state.data.push(action.payload);
     },
+    destroy: (state, action) => {
+      const foundIndex = state.data.findIndex(
+        ({ id }) => id === action.payload.id
+      );
+      state.data.splice(foundIndex, 1);
+    },
     edit: (state, action) => {
       const foundIndex = state.data.findIndex(
         ({ id }) => id === action.payload.id
@@ -28,6 +34,7 @@ export const reminderSlice = createSlice({
   },
 });
 
-export const { add, edit, setCurrent, toggleModal } = reminderSlice.actions;
+export const { add, destroy, edit, setCurrent, toggleModal } =
+  reminderSlice.actions;
 
 export default reminderSlice.reducer;
