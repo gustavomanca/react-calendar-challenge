@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Button, Dropdown, Modal, TextField } from "components";
+import { Button, Dropdown, TextField } from "components";
 import { add, edit, setCurrent, toggleModal } from "reducers/reminder";
 import { getCityKey } from "services/city";
 import { getCurrentConditions } from "services/weather";
 import { generateUUID } from "utils/uuid";
 
-import { INITIAL_REMINDER_STATE, TIME_OPTIONS } from "./content";
+import { getIconPath, INITIAL_REMINDER_STATE, TIME_OPTIONS } from "./content";
 import * as S from "./styles";
 
 function Form({ amountOfDays, reminder, setReminder }) {
@@ -46,17 +46,17 @@ function Form({ amountOfDays, reminder, setReminder }) {
 
     try {
       const { data } = await getCityKey(query);
-      if (!data.length) return;
+      if (!data.length)
+        return setReminder((prev) => ({ ...prev, temperature: null }));
       const [city] = data;
 
       const { data: weatherData } = await getCurrentConditions(city.Key);
-
-      if (!weatherData.length) return;
-
+      if (!weatherData.length)
+        return setReminder((prev) => ({ ...prev, temperature: null }));
       const [weather] = weatherData;
 
       const weatherInfo = {
-        icon: `https://developer.accuweather.com/sites/default/files/${weather.WeatherIcon}-s.png`,
+        icon: getIconPath(weather.WeatherIcon),
         description: weather.WeatherText,
         temperature: weather.Temperature.Metric.Value,
       };
@@ -144,10 +144,12 @@ function Form({ amountOfDays, reminder, setReminder }) {
               <S.ConditionLabel>Current conditions:</S.ConditionLabel>
               <S.ConditionsInfo>
                 <S.Temperature>{reminder.temperature}°C</S.Temperature>
-                <S.ConditionIcon
-                  src={reminder.icon}
-                  alt={reminder.description}
-                />
+                {reminder.icon && (
+                  <S.ConditionIcon
+                    src={reminder.icon}
+                    alt={reminder.description}
+                  />
+                )}
                 <span>({reminder.description})</span>
               </S.ConditionsInfo>
             </S.Conditions>

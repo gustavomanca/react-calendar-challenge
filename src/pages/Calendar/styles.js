@@ -1,6 +1,28 @@
 import styled, { css } from "styled-components";
 
+const modifiers = {
+  isLoading: (theme) => css`
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 0;
+      background-color: rgba(0, 0, 0, 0.2);
+
+      z-index: ${theme.layers.overlay};
+    }
+  `,
+};
+
 export const Container = styled.div`
+  ${({ theme, isLoading }) => css`
+    width: 800px;
+    margin: 2rem auto;
+
+    ${isLoading && modifiers.isLoading(theme)};
+  `}
+`;
+
+export const CalendarWrapper = styled.div`
   margin: 0 0 32px;
 `;
 

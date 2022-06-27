@@ -1,3 +1,11 @@
+const BASE_ICON_PATH = `https://apidev.accuweather.com/developers/Media/Default/WeatherIcons`;
+
+export function getIconPath(number) {
+  const length = String(number).length;
+  const target = length === 1 ? "0".concat(String(number)) : String(number);
+  return `${BASE_ICON_PATH}/${target}-s.png`;
+}
+
 export const INITIAL_REMINDER_STATE = {
   id: "",
   title: "",

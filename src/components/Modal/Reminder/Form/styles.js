@@ -41,5 +41,6 @@ export const Temperature = styled.span`
   ${({ theme }) => css`
     display: block;
     font-size: ${theme.font.sizes.xxlarge};
+    margin: 0 ${theme.spacings.xsmall} 0 0;
   `}
 `;

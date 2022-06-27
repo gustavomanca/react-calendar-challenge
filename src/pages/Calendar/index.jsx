@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { Button } from "components";
+import { Button, Loader } from "components";
 import ReminderModal from "components/Modal/Reminder";
+import { useApi } from "hooks";
 import { setCurrent, toggleModal } from "reducers/reminder";
 import { getMappedMonth } from "utils/date";
 
@@ -12,6 +13,7 @@ import * as S from "./styles";
 function Calendar() {
   const dispatch = useDispatch();
   const currentReminder = useSelector(({ reminders }) => reminders.current);
+  const { loading } = useApi();
 
   const month = getMappedMonth();
 
@@ -21,18 +23,20 @@ function Calendar() {
   }
 
   return (
-    <div className="container">
+    <S.Container isLoading={loading}>
+      {loading && <Loader />}
+
       <h1>Calendar</h1>
 
-      <S.Container>
+      <S.CalendarWrapper>
         <Header />
         <DateGrid month={month.mapped} />
-      </S.Container>
+      </S.CalendarWrapper>
 
       <Button onClick={onNewReminder}>New Reminder</Button>
 
       <ReminderModal amountOfDays={month.amountDays} />
-    </div>
+    </S.Container>
   );
 }
 
