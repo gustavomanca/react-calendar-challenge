@@ -1,3 +1,14 @@
+export const INITIAL_REMINDER_STATE = {
+  id: "",
+  title: "",
+  day: "",
+  city: "",
+  time: "",
+  icon: "",
+  temperature: null,
+  description: "",
+};
+
 export const TIME_OPTIONS = [
   {
     key: "00:00:00",
