@@ -1,5 +1,10 @@
 {
   "name": "react-challenge",
+  "author": {
+    "email": "gustavo.mancaa@gmail.com",
+    "name": "Gustavo Manca",
+    "url": "https://linkedin.com/in/gustavomanca" 
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
