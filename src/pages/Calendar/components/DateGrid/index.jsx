@@ -1,41 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
-import { setCurrent, toggleModal } from "reducers/reminder";
 
+import ReminderHandler from "../ReminderHandler";
 import * as S from "./styles";
 
 function DateGrid({ month }) {
-  const dispatch = useDispatch();
   const reminders = useSelector(({ reminders }) => reminders.data);
 
-  function verifyIfHasReminder(day) {
-    if (!reminders?.length) return null;
+  function getCurrentDayReminders(day) {
     return reminders.filter((reminder) => Number(reminder.day) === day);
   }
 
   return (
     <S.Container>
       {month?.map((row) =>
-        row.map(({ day, isCurrentMonth, isWeekend }) => {
-          const hasReminder = verifyIfHasReminder(day);
-          const renderReminder = isCurrentMonth && hasReminder;
+        row.map(({ day, dayOfWeek, isCurrentMonth, isWeekend }) => {
+          const remindersOfDay = getCurrentDayReminders(day);
+
           return (
             <S.Day key={day} isWeekend={isWeekend} disabled={!isCurrentMonth}>
               <S.DayNumber>{day}</S.DayNumber>
-
-              {renderReminder &&
-                hasReminder.map((reminder) => (
-                  <S.Reminder
-                    key={reminder.title}
-                    onClick={() => {
-                      dispatch(setCurrent(reminder));
-                      dispatch(toggleModal(true));
-                    }}
-                  >
-                    {reminder.title}
-                  </S.Reminder>
-                ))}
+              <ReminderHandler
+                day={day}
+                dayOfWeek={dayOfWeek}
+                isCurrentMonth={isCurrentMonth}
+                reminders={remindersOfDay}
+              />
             </S.Day>
           );
         })
